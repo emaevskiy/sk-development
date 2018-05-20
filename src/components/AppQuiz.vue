@@ -1,10 +1,15 @@
 <template>
   <div class="quiz">
-    <transition name="fade" tag="div" appear>
-      <div class="quiz-step quiz-step-active"
-           v-for="(step, index) in test[branch]"
+    <transition-group name="fade"
+                      tag="div"
+                      mode="in-out"
+                      appear
+    >
+      <div class="quiz-step"
+           v-for="(step, index, key) in activeBranch"
            v-if="quizIteration == index"
-           :key="step">
+           :key="step"
+      >
         <div class="row quiz-header">
           <div class="col-12">
             <h4 class="quiz-question">
@@ -15,9 +20,11 @@
         <div class="row quiz-body">
           <div class="col-sm-5 col-md-5 col-lg-3 mb-4"
                v-for="(answer, index) in step.answers"
-               :key="index">
+               :key="index"
+          >
             <div class="quiz-answer"
-                   @click="nextStep(index, step.question, answer.text, answer.branch)">
+                 @click="nextStep(index, step.question, answer.text, answer.branch)"
+                 >
               <div class="quiz-img">
                 <img :src="imgPath + answer.img">
               </div>
@@ -28,7 +35,7 @@
           </div>
         </div>
       </div>
-    </transition>
+    </transition-group>
   </div>
 </template>
 
@@ -68,6 +75,7 @@ export default {
             ]
           }
         ],
+
         trade: [
           {
             question: 'Выберите интересующий вас вид операции с коммерческой недвижимостью',
@@ -85,6 +93,7 @@ export default {
             ]
           }
         ],
+
         trade_rent: [
           {
             question: 'Выберите район',
@@ -196,6 +205,7 @@ export default {
             ]
           }
         ],
+
         trade_sell: [
           {
             question: 'Выберите район',
@@ -329,6 +339,7 @@ export default {
             ]
           }
         ],
+
         office_rent: [
           {
             question: 'Выберите район',
@@ -440,6 +451,7 @@ export default {
             ]
           }
         ],
+
         office_sell: [
           {
             question: 'Выберите район',
@@ -573,6 +585,7 @@ export default {
             ]
           }
         ],
+
         industrial_rent: [
           {
             question: 'Выберите район',
@@ -659,6 +672,7 @@ export default {
             ]
           }
         ],
+
         industrial_sell: [
           {
             question: 'Выберите район',
@@ -749,7 +763,9 @@ export default {
     }
   },
   computed: {
-
+    activeBranch(){
+      return this.test[this.branch];
+    }
   },
   methods: {
     nextStep(index, question, answer, branch){
@@ -759,7 +775,7 @@ export default {
         this.quizIteration = 0; // Если ветка изменилась, то обнуляем итератор и строим DOM по данным из новой ветки
         this.branch = branch; // Обновляем текущую ветку
 
-        this.stepsCount = this.stepsCount + this.test[this.branch].length; // Расчитываем общее количество шагов, в зависимости от выбранной ветки
+        this.stepsCount = this.stepsCount + this.activeBranch.length; // Расчитываем общее количество шагов, в зависимости от выбранной ветки
 
       } else {
 

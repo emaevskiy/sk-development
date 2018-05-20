@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from './views/Home.vue'
 import Thank from './views/Thank.vue'
 import E404 from './views/E404.vue'

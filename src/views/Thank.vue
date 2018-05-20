@@ -1,21 +1,21 @@
 <template>
   <div class="thank">
-    <app-header></app-header>
+    <the-header></the-header>
     <app-thank></app-thank>
-    <app-footer></app-footer>
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
 
-import AppHeader from '@/components/AppHeader.vue'
+import TheHeader from '@/components/TheHeader.vue'
 import AppThank from '@/components/AppThank.vue'
-import AppFooter from '@/components/AppFooter.vue'
+import TheFooter from '@/components/TheFooter.vue'
 
 export default {
   name: 'thank',
   components: {
-    AppHeader, AppThank, AppFooter
+    TheHeader, AppThank, TheFooter
   }
 }
 

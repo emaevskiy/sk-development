@@ -1,21 +1,21 @@
 <template>
   <div class="home">
-    <app-header></app-header>
-    <app-main></app-main>
-    <app-footer></app-footer>
+    <the-header></the-header>
+    <the-main></the-main>
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
 
-import AppHeader from '@/components/AppHeader.vue'
-import AppMain from '@/components/AppMain.vue'
-import AppFooter from '@/components/AppFooter.vue'
+import TheHeader from '@/components/TheHeader.vue'
+import TheMain from '@/components/TheMain.vue'
+import TheFooter from '@/components/TheFooter.vue'
 
 export default {
   name: 'home',
   components: {
-    AppHeader, AppMain, AppFooter
+    TheHeader, TheMain, TheFooter
   }
 }
 

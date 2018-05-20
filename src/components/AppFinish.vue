@@ -2,10 +2,12 @@
   <transition name="fade" appear>
     <div class="finish">
       <div class="row finish-header">
-        <div class="col-sm-5 col-md-5 col-lg-3 mb-4" v-for="(result, index) in results">
+        <div class="col-sm-5 col-md-5 col-lg-3 mb-4"
+             v-for="(result, index) in results"
+        >
           <div class="finish-result">
             <div class="finish-img">
-              <img :src="imgPath + result.img">
+              <img :src="imgPath + result.img" />
             </div>
             <div class="finish-btn">
               <span>
@@ -23,15 +25,20 @@
           </h4>
         </div>
         <div class="col-sm-12 col-md-7 col-lg-7">
-          <div class="form-control" v-for="(item, index) in userData">
+          <div class="form-control"
+               v-for="(item, index) in userData"
+          >
             <label :for="item.name + index"> {{ item.label }} </label>
             <input type="text"
                    :class="item.errors.length ? 'error' : ''"
                    :id="item.name + '-' + index"
                    :value="item.value"
                    :placeholder="item.placeholder"
-                   @change="validate(index, $event.target.value)">
-            <ul class="form-control-messages" v-if="item.errors.length">
+                   @change="validate(index, $event.target.value)"
+            />
+            <ul class="form-control-messages"
+                v-if="item.errors.length"
+            >
               <li v-for="error in item.errors">{{ error }}</li>
             </ul>
           </div>
@@ -150,7 +157,7 @@ export default {
 
       sendData = JSON.stringify(sendData);
 
-      console.log(sendData);
+      // console.log(sendData);
 
       axios.post('/send.php', sendData)
       .then((response) => {
